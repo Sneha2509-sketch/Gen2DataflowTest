@@ -1,0 +1,74 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Audit",
+        "type": "RefreshDataflow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "dataflowId": "507139c1-b450-4368-905c-07eaf4c3cba0",
+          "workspaceId": "25fb9032-d0cf-4f24-a773-73464483b45a",
+          "notifyOption": "NoNotification",
+          "dataflowType": "Dataflow-Gen2"
+        }
+      },
+      {
+        "name": "Semantic model refresh1",
+        "type": "PBISemanticModelRefresh",
+        "dependsOn": [
+          {
+            "activity": "Audit",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "method": "post",
+          "waitOnCompletion": true,
+          "commitMode": "Transactional",
+          "operationType": "SemanticModelRefresh",
+          "groupId": "25fb9032-d0cf-4f24-a773-73464483b45a",
+          "datasetId": "be75f7e5-bfb0-42ae-93af-883fdfb4523a",
+          "objects": [
+            {
+              "table": "audit"
+            },
+            {
+              "table": "organization"
+            },
+            {
+              "table": "site"
+            },
+            {
+              "table": "finding_severity"
+            },
+            {
+              "table": "Audit_States"
+            },
+            {
+              "table": "audit_type"
+            }
+          ]
+        },
+        "externalReferences": {
+          "connection": "a60fa1c0-9ecc-4df7-8647-5db0e49ff876"
+        }
+      }
+    ]
+  }
+}
