@@ -1,0 +1,121 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowFastCopy": false
+  },
+  "name": "Deliverables_DF",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "891e1d14-f031-4100-8979-91e6e003c5f3",
+  "queriesMetadata": {
+    "deliverable": {
+      "queryId": "e2240c97-3146-42c4-880d-f9c5fbd81773",
+      "queryName": "deliverable"
+    },
+    "deliverable_type": {
+      "queryId": "97b4800a-cf93-459c-abd0-9baee27f3b29",
+      "queryName": "deliverable_type"
+    },
+    "DeliverableDFLastUpdate": {
+      "queryId": "c902b013-b3ec-43c3-8d49-564bad2c9c66",
+      "queryName": "DeliverableDFLastUpdate"
+    },
+    "DBName": {
+      "queryId": "857eb48c-d6ab-4cf7-825c-550bc69855eb",
+      "queryName": "DBName",
+      "loadEnabled": false
+    },
+    "deliverable_hold_reason": {
+      "queryId": "cef21e9e-6bf8-466e-845b-9553afd259b6",
+      "queryName": "deliverable_hold_reason"
+    },
+    "DeliverableOwnershipGroup": {
+      "queryId": "8e8b114a-899a-43d8-8119-79c3f1fd50aa",
+      "queryName": "DeliverableOwnershipGroup"
+    },
+    "ownership_group": {
+      "queryId": "70dc8dfe-0a2f-4948-9ed8-f4a7dde18742",
+      "queryName": "ownership_group"
+    },
+    "DeliverableUser": {
+      "queryId": "35675fd8-49b1-4ed6-abf7-dcd7cc70d132",
+      "queryName": "DeliverableUser"
+    },
+    "Version": {
+      "queryId": "00508957-9ae9-4946-a9a3-7ec00b321ef7",
+      "queryName": "Version",
+      "loadEnabled": false
+    },
+    "Deliverables_DF_Version": {
+      "queryId": "66bf8c07-b7ce-46cb-9af9-00c247d254be",
+      "queryName": "Deliverables_DF_Version"
+    },
+    "Deliverables_DF_DBName": {
+      "queryId": "d58fdd29-c800-4536-aaaf-76eefb0bd28c",
+      "queryName": "Deliverables_DF_DBName"
+    },
+    "limitRows": {
+      "queryId": "7d46ee85-38ea-45eb-92bb-8c68886aadbe",
+      "queryName": "limitRows",
+      "loadEnabled": false
+    },
+    "deliverable_tag": {
+      "queryId": "d72f126b-a03b-4ccf-82a2-d972301ea140",
+      "queryName": "deliverable_tag"
+    },
+    "deliverable_DataDestination": {
+      "queryId": "487f0c0c-f796-437b-879c-b6ab8f0607a6",
+      "queryName": "deliverable_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "deliverable_type_DataDestination": {
+      "queryId": "4f3a4f31-62c7-4e71-9ab6-4164f5b0c43b",
+      "queryName": "deliverable_type_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "deliverable_hold_reason_DataDestination": {
+      "queryId": "50254a9d-92bc-4bc0-9d0b-5b7bb3a1fb51",
+      "queryName": "deliverable_hold_reason_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DeliverableOwnershipGroup_DataDestination": {
+      "queryId": "5aae06bf-87c9-414d-9e47-9d0e0ea98bcd",
+      "queryName": "DeliverableOwnershipGroup_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "ownership_group_DataDestination": {
+      "queryId": "2014c9c6-bd46-4d9e-8a99-c8addc954fce",
+      "queryName": "ownership_group_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DeliverableUser_DataDestination": {
+      "queryId": "a964120d-ac45-4d9d-82ca-0c758c90238c",
+      "queryName": "DeliverableUser_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "deliverable_tag_DataDestination": {
+      "queryId": "73e18154-bfea-4744-97a6-8f445875a8a9",
+      "queryName": "deliverable_tag_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "localhost;gbs-trutesta-sandbox",
+      "kind": "PostgreSQL",
+      "connectionId": "{\"ClusterId\":\"891e1d14-f031-4100-8979-91e6e003c5f3\",\"DatasourceId\":\"c15722a0-5385-4163-9253-41d246b402c1\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"891e1d14-f031-4100-8979-91e6e003c5f3\",\"DatasourceId\":\"681a8637-86fd-4b2f-945b-c9c3d51a215b\"}"
+    }
+  ]
+}
