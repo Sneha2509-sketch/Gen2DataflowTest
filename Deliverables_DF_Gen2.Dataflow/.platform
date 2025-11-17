@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "Deliverables_DF_Gen2",
+    "description": "Contains the Production Data from the Master DB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8f0e102d-91f0-8b2d-4b8a-76a75cd4209e"
+  }
+}
