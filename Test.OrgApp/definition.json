@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/orgapp/definition/orgAppDefinition/1.0.0/schema.json",
+  "settings": {},
+  "elements": [
+    {
+      "elementType": "item",
+      "elementId": "4d385dd6-c274-4aa2-a5a8-176372323b53",
+      "itemType": "Report",
+      "itemLogicalId": "227895a6-b20f-8530-45af-e6675d15084d",
+      "displayName": "Audit"
+    },
+    {
+      "elementType": "item",
+      "elementId": "53ea2b17-7041-49e7-8bd1-87d5fbd1f559",
+      "itemType": "SemanticModel",
+      "itemLogicalId": "dfb4523a-883f-93af-42ae-bfb0be75f7e5",
+      "displayName": "4d385dd6-c274-4aa2-a5a8-176372323b53"
+    }
+  ]
+}
