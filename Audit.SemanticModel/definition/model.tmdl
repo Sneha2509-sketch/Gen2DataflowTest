@@ -1,0 +1,72 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Functions
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Main Queries'
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Metadata Table'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup Parameters
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup UUID_Table
+
+	annotation PBI_QueryGroupOrder = 4
+
+annotation PBI_QueryOrder = ["environment","Dataflow_UUID","Workspace_UUID","getDataflowUUID","getWorkspaceUUID","site","audit","Audit_States","audit_type","finding","finding_severity","organization","Audit_DBName","Audit_DF_LastUpdated","Audit_DF_Version","Report_Version","Resource_DF_DBName","ResourceDFLastUpdated","Resource_DF_Version","StaticStatesDFLastUpdated","Static_States_DF_Version","workspace","Version"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Dataflow_UUID
+ref table DateTableTemplate_9c0a93d5-9b99-4824-9a83-952be9930544
+ref table Workspace_UUID
+ref table site
+ref table organization
+ref table ResourceDFLastUpdated
+ref table LocalDateTable_e147448a-f5de-4f20-ae53-e518cc15e61b
+ref table audit
+ref table LocalDateTable_fcbe2929-c1b9-4aee-a66a-37341b748d24
+ref table LocalDateTable_72e0265a-fcbf-401e-b931-2add691d8e3d
+ref table LocalDateTable_8ad60946-8b5c-42d7-a435-f4f1eea949dc
+ref table finding
+ref table LocalDateTable_278a4abc-cac7-4d98-97df-7512900428f9
+ref table LocalDateTable_e12ceab8-2267-46c5-a89d-1de61518e3e6
+ref table finding_severity
+ref table LocalDateTable_16ae6288-627e-4018-849d-b6de74c749d8
+ref table Audit_States
+ref table Audit_DBName
+ref table Audit_DF_Version
+ref table Report_Version
+ref table Audit_DF_LastUpdated
+ref table LocalDateTable_d1657a04-36fd-4923-acb8-24a94c2a5cf4
+ref table Resource_DF_DBName
+ref table Resource_DF_Version
+ref table Static_States_DF_Version
+ref table StaticStatesDFLastUpdated
+ref table LocalDateTable_90a34637-d290-4e37-a297-7e074999c46f
+ref table 'Display Audit Fields'
+ref table audit_type
+ref table LocalDateTable_c53910f7-7ff8-4bdb-a318-b06ebf3a7b0f
+ref table LocalDateTable_e396edda-f4ee-4d89-b173-d1ddc5d42e29
+ref table LocalDateTable_17946c29-b34a-4ba1-ae00-1b7e3498bf00
+ref table LocalDateTable_7eaa39ba-247f-4bd1-be39-9b7f3e19a8c7
+
+ref cultureInfo en-US
+

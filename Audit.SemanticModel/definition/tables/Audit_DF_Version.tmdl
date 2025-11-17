@@ -1,0 +1,27 @@
+table Audit_DF_Version
+	lineageTag: 948d5b62-ae2e-420c-ba6a-223ecfae13a0
+
+	column 'DF Version'
+		dataType: string
+		lineageTag: f8e2e846-b865-41ce-9f28-2cd4271acd94
+		summarizeBy: none
+		sourceColumn: DF Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Audit_DF_Version = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Audit_DF")]}[Data],
+				    Audit_DF_Version =Dataflow {[entity="Audit_DF_Version"]}[Data]
+				in
+				    Audit_DF_Version
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

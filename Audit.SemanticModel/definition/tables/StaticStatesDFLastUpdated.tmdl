@@ -1,0 +1,33 @@
+table StaticStatesDFLastUpdated
+	lineageTag: 3387413b-3c43-4f65-a2db-cbf01e6b050b
+
+	column 'Updated Time in UTC'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7483c79-f19f-448f-9346-db6f20284415
+		summarizeBy: none
+		sourceColumn: Updated Time in UTC
+
+		variation Variation
+			isDefault
+			relationship: 6a11dc27-a4c4-4b6d-b0e4-1a249bdb0301
+			defaultHierarchy: LocalDateTable_90a34637-d290-4e37-a297-7e074999c46f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition StaticStatesDFLastUpdated = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Static_States_DF")]}[Data],
+				    StaticStatesDFLastUpdated =Dataflow {[entity="StaticStatesDFLastUpdated"]}[Data]
+				in
+				    StaticStatesDFLastUpdated
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

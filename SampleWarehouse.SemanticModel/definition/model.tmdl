@@ -1,0 +1,13 @@
+model ef0b74e7-802f-457a-834a-5c89464beb28
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation SourceLineageTagType = DatabaseFullyQualifiedName
+

@@ -1,0 +1,33 @@
+table ResourceDFLastUpdated
+	lineageTag: 4e4800fe-107f-4088-aaa8-a7d3ad0b51f5
+
+	column 'Updated Time in UTC'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2844ae55-393a-4b0d-bac1-bc7ed7c73c64
+		summarizeBy: none
+		sourceColumn: Updated Time in UTC
+
+		variation Variation
+			isDefault
+			relationship: 7c99e3e6-80ae-4823-82ab-92e6b96efb49
+			defaultHierarchy: LocalDateTable_e147448a-f5de-4f20-ae53-e518cc15e61b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ResourceDFLastUpdated = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Resource_DF")]}[Data],
+				    ResourceDFLastUpdated =Dataflow {[entity="ResourceDFLastUpdated"]}[Data]
+				in
+				    ResourceDFLastUpdated
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

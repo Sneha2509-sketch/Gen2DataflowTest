@@ -1,0 +1,41 @@
+table Workspace_UUID
+	lineageTag: 963c2999-6eda-47e0-9f44-2ec7da8d6af4
+
+	column Environment
+		dataType: string
+		lineageTag: e432a35c-1645-433d-a71d-228db57a5a5f
+		summarizeBy: none
+		sourceColumn: Environment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Workspace
+		dataType: string
+		lineageTag: 1add0f0d-34b7-44b7-abf1-b79c98a84459
+		summarizeBy: none
+		sourceColumn: Workspace
+
+		annotation SummarizationSetBy = Automatic
+
+	column UUID
+		dataType: string
+		lineageTag: 4370a65c-6245-496c-9ccf-ebd0c2a2ca97
+		summarizeBy: none
+		sourceColumn: UUID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Workspace_UUID = m
+		mode: import
+		queryGroup: UUID_Table
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("nZJPaxwxDMW/yjCnFiLwf1vHhQylh0LbXXoJe5BsuSzdzAyzk5KPX22PpbnkYLCF+OnpPT89jUd5ptMmMj6Mp+1ll9tOw7eDvqQL2l48lFYcBJcSFCYLxtccGmOxPoznh/8TjjQ3Xl61FMh0HzoBU/MQxBZAQoFqGraI7Lxrb2K+bkt7qftlmbVKtmd0JoONESFgN8BslOldyt5bG2v+lzS9rrJdnmXe6XpHZCqqJQJJrxAsoiIaQ3RsqPdia+1/EZ/nXbZdft3FTIcvw3SVum+XStfhsK5XvdxF3Ybvsi7bfpl/Dh8epx8ftb2Yal0JAnoKBMYElKIAckY1rXXJ5r0jjqfDp+k+pEbGrimAcdxAN0LA5Cqk4owtUq2we98QbWRhH2IIIKkyBBI1CY3Ce23Jt5ptsm8m9ii/l/WmFVQ/0anVJbFo7qUBJ8rAQb9V9poj1fF8/gM=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Environment = _t, Workspace = _t, UUID = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Environment", type text}, {"Workspace", type text}, {"UUID", type text}})
+				in
+				  #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,68 @@
+table finding_severity
+	lineageTag: 17be0b73-ce22-4daf-9c4a-8ad05c89db2b
+
+	column id
+		dataType: string
+		lineageTag: 1b627977-cc0b-42fa-98e7-89c45d5f452e
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name_text
+		dataType: string
+		lineageTag: d74e40d9-845f-4f69-8885-4f6e14fec5ae
+		summarizeBy: none
+		sourceColumn: name_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 9f3df6f9-da89-49d9-85c3-4ddbe528c8cd
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: int64
+		formatString: 0
+		lineageTag: 128b7b84-2afa-4d33-957f-2461b6268b64
+		summarizeBy: sum
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_created
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: ef0da8d6-c5f3-4f65-bd79-3d43a81684ab
+		summarizeBy: none
+		sourceColumn: date_created
+
+		variation Variation
+			isDefault
+			relationship: 4e21e714-8199-4fa2-8f3b-cfe815fa0334
+			defaultHierarchy: LocalDateTable_16ae6288-627e-4018-849d-b6de74c749d8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition finding_severity = m
+		mode: import
+		queryGroup: 'Main Queries'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Audit_DF")]}[Data],
+				    Finding_Severity =Dataflow {[entity="finding_severity"]}[Data]
+				in
+				    Finding_Severity
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

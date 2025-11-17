@@ -1,0 +1,294 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "audit.date_audit_canceled": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "date_audit_canceled"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date audit canceled": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.date_audit_completed": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "date_audit_completed"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date audit completed": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.date_audit_scheduled": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "date_audit_scheduled"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date audit scheduled": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.date_audit_scheduled_end": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "date_audit_scheduled_end"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date audit scheduled end": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.date_created": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "date_created"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date created": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.days_till_scheduled_audit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "Days till Scheduled Audit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Days till Scheduled Audit": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Id": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.impacts_accreditiation": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "impacts_accreditiation"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Impacts accreditiation": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit.is_internal_audit": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit",
+			          "ConceptualProperty": "is_internal_audit"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Is internal audit": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "audit_type.audit_type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "audit_type",
+			          "ConceptualProperty": "Audit type"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Audit Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "finding.date_created": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finding",
+			          "ConceptualProperty": "date_created"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date Created": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "finding.overall_findings": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finding",
+			          "ConceptualProperty": "Overall Findings"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Findings": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Total Findings": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "finding_severity.name_text": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "finding_severity",
+			          "ConceptualProperty": "name_text"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Severity": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

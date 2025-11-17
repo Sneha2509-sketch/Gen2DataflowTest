@@ -1,0 +1,24 @@
+table Report_Version
+	lineageTag: c809373d-64f5-4965-873f-df4dd7fd922e
+
+	column Version
+		dataType: string
+		lineageTag: 3a0d7604-b6a9-4280-8dce-73b6988e1f4b
+		summarizeBy: none
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Report_Version = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = #"Version",
+				    #"Converted to Table" = #table(1, {{Source}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Version"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

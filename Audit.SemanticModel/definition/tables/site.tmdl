@@ -1,0 +1,52 @@
+table site
+	lineageTag: 3dbdf549-30a6-43fe-b203-ef29852f364f
+
+	column id
+		dataType: string
+		lineageTag: bc3d3382-1f30-459e-abd7-ff9ceff8ac26
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tenant_id
+		dataType: string
+		lineageTag: 69d4f9a2-42d4-4d1d-9ea5-164d486451a8
+		summarizeBy: none
+		sourceColumn: tenant_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column site_name
+		dataType: string
+		lineageTag: dd424676-5a7b-4f89-b9d9-4e78f74a28bf
+		summarizeBy: none
+		sourceColumn: site_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site
+		dataType: string
+		lineageTag: a65a2642-3f11-4d53-a23e-3e39f3838607
+		summarizeBy: none
+		sourceColumn: Site
+
+		annotation SummarizationSetBy = Automatic
+
+	partition site = m
+		mode: import
+		queryGroup: 'Main Queries'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Resource_DF")]}[Data],
+				    Site =Dataflow {[entity="site"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(Site,{{"nice_name", "Site"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

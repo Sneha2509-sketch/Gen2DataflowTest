@@ -1,0 +1,57 @@
+table 'Display Audit Fields'
+	lineageTag: 0a7d97a8-6a42-4915-a2f3-579c8486468e
+
+	column 'Audit Fields'
+		lineageTag: fc6ec460-888c-4a44-ac79-6783a41773ed
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Audit Fields Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Audit Fields Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Audit Fields Fields'
+		isHidden
+		lineageTag: 93878c41-98da-4aa0-bc0a-a426d203a427
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Audit Fields Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "kind": 2,
+				  "version": 3
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Audit Fields Order'
+		isHidden
+		formatString: 0
+		lineageTag: 69e1ccbf-1199-44a3-9a7c-335b86b69a06
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Display Audit Fields' = calculated
+		mode: import
+		source = ```
+				{
+				     ("Audit Type",NAMEOF(audit_type[Audit type]),1),
+				    ("Date audit canceled", NAMEOF('audit'[date_audit_canceled]), 2),
+				    ("Date audit completed", NAMEOF('audit'[date_audit_completed]), 3),
+				    ("Date audit scheduled", NAMEOF('audit'[date_audit_scheduled]), 4),
+				    ("Date audit scheduled end", NAMEOF('audit'[date_audit_scheduled_end]), 5),
+				    ("Date created", NAMEOF('audit'[date_created]), 6),
+				    ("Days till Scheduled Audit", NAMEOF('audit'[Days till Scheduled Audit]), 7),
+				    ("Id", NAMEOF('audit'[id]), 8),
+				    ("Impacts accreditiation", NAMEOF('audit'[impacts_accreditiation]), 9),
+				    ("Is internal audit", NAMEOF('audit'[is_internal_audit]), 10) 
+				}
+				```
+
+	annotation PBI_Id = 46a0ae9043324e289c807df970a5368c
+

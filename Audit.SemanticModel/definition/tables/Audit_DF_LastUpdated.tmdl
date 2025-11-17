@@ -1,0 +1,33 @@
+table Audit_DF_LastUpdated
+	lineageTag: 2c0c6a0f-34e9-46d9-8933-dd1b279da67e
+
+	column 'Updated Time in UTC'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: be76664b-7e58-4dd6-970f-4175d912e083
+		summarizeBy: none
+		sourceColumn: Updated Time in UTC
+
+		variation Variation
+			isDefault
+			relationship: 3bcc2481-f04c-40dd-8a49-309794db92ae
+			defaultHierarchy: LocalDateTable_d1657a04-36fd-4923-acb8-24a94c2a5cf4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Audit_DF_LastUpdated = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Audit_DF")]}[Data],
+				    Audit_DF_LastUpdated =Dataflow {[entity="Audit_DF_LastUpdated"]}[Data]
+				in
+				    Audit_DF_LastUpdated
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

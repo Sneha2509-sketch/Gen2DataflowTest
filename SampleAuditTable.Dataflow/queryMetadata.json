@@ -1,0 +1,45 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowFastCopy": false
+  },
+  "name": "SampleAuditTable",
+  "queryGroups": [],
+  "documentLocale": "en-GB",
+  "gatewayObjectId": "891e1d14-f031-4100-8979-91e6e003c5f3",
+  "queriesMetadata": {
+    "DefaultDestination": {
+      "queryId": "e5649c83-59a3-4060-88e2-58cbae925b37",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "SampleAudit_DailySnapshot": {
+      "queryId": "7fffe2d6-b010-4dfe-a4c3-55b76b82a02a",
+      "queryName": "SampleAudit_DailySnapshot"
+    },
+    "DBName": {
+      "queryId": "3648253c-e5f2-42af-bf41-f4c57b1b8d5e",
+      "queryName": "DBName",
+      "loadEnabled": false
+    },
+    "SampleAudit_DailySnapshot_DataDestination": {
+      "queryId": "9265e734-a902-4233-a1c9-8b54e64fd270",
+      "queryName": "SampleAudit_DailySnapshot_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "localhost;gbs-trutesta-sandbox",
+      "kind": "PostgreSQL",
+      "connectionId": "{\"ClusterId\":\"891e1d14-f031-4100-8979-91e6e003c5f3\",\"DatasourceId\":\"c15722a0-5385-4163-9253-41d246b402c1\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"891e1d14-f031-4100-8979-91e6e003c5f3\",\"DatasourceId\":\"681a8637-86fd-4b2f-945b-c9c3d51a215b\"}"
+    }
+  ]
+}

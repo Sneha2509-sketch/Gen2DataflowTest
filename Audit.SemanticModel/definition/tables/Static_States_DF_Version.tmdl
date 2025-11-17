@@ -1,0 +1,27 @@
+table Static_States_DF_Version
+	lineageTag: dd91c9a2-ac1b-471f-84ef-3e1177d0f597
+
+	column Version
+		dataType: string
+		lineageTag: cb210fe5-a9a9-4d6c-b44c-4dc72a41e5a5
+		summarizeBy: none
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Static_States_DF_Version = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Static_States_DF")]}[Data],
+				    Static_States_DF_Version =Dataflow {[entity="Static_States_DF_Version"]}[Data]
+				in
+				    Static_States_DF_Version
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

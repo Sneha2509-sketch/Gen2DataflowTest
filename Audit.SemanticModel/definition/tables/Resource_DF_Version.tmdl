@@ -1,0 +1,27 @@
+table Resource_DF_Version
+	lineageTag: a4e79f0a-6bf8-44b2-a407-3e1d91951de4
+
+	column Version
+		dataType: string
+		lineageTag: a7663a58-feb8-4813-a479-279eb2aec7b0
+		summarizeBy: none
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Resource_DF_Version = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Resource_DF")]}[Data],
+				    Resource_DF_Version =Dataflow {[entity="Resource_DF_Version"]}[Data]
+				in
+				    Resource_DF_Version
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

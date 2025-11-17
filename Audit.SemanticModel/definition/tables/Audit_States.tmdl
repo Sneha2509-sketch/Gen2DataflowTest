@@ -1,0 +1,35 @@
+table Audit_States
+	lineageTag: d5169339-3976-42a2-bcda-9cfb9875ad0c
+
+	column audit_status_code
+		dataType: string
+		lineageTag: 35ef5af6-201c-45fe-a1f6-e5074ad46055
+		summarizeBy: none
+		sourceColumn: audit_status_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 4e9d450d-c0ac-48ee-94f9-aa18af147e69
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Audit_States = m
+		mode: import
+		queryGroup: 'Main Queries'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Static_States_DF")]}[Data],
+				    Audit_States =Dataflow {[entity="Audit_States"]}[Data]
+				in
+				    Audit_States
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

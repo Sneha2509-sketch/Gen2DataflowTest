@@ -1,0 +1,85 @@
+relationship 7c99e3e6-80ae-4823-82ab-92e6b96efb49
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ResourceDFLastUpdated.'Updated Time in UTC'
+	toColumn: LocalDateTable_e147448a-f5de-4f20-ae53-e518cc15e61b.Date
+
+relationship 6fa6e0d7-70dd-4835-9cc5-1e6b3bc7c65f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit.date_audit_completed
+	toColumn: LocalDateTable_fcbe2929-c1b9-4aee-a66a-37341b748d24.Date
+
+relationship 6df7975f-4a49-44a7-bbbe-c61cf84e5b67
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit.date_audit_canceled
+	toColumn: LocalDateTable_72e0265a-fcbf-401e-b931-2add691d8e3d.Date
+
+relationship 1371cb2e-40da-4b16-b863-6fc7dce92607
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit.date_audit_scheduled_end
+	toColumn: LocalDateTable_8ad60946-8b5c-42d7-a435-f4f1eea949dc.Date
+
+relationship bd0241aa-8491-4790-a9d3-0014118c7302
+	joinOnDateBehavior: datePartOnly
+	fromColumn: finding.date_completed
+	toColumn: LocalDateTable_278a4abc-cac7-4d98-97df-7512900428f9.Date
+
+relationship 9dfce316-7e4e-4c3f-a631-4d8d1454543a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: finding.date_canceled
+	toColumn: LocalDateTable_e12ceab8-2267-46c5-a89d-1de61518e3e6.Date
+
+relationship 4e21e714-8199-4fa2-8f3b-cfe815fa0334
+	joinOnDateBehavior: datePartOnly
+	fromColumn: finding_severity.date_created
+	toColumn: LocalDateTable_16ae6288-627e-4018-849d-b6de74c749d8.Date
+
+relationship e4944315-96f8-4548-8107-3a9edd339579
+	fromColumn: finding.finding_severity_id
+	toColumn: finding_severity.id
+
+relationship d97aea9d-4406-4865-9cd9-5a9f6b9a1298
+	fromColumn: finding.audit_id
+	toColumn: audit.id
+
+relationship 3bcc2481-f04c-40dd-8a49-309794db92ae
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Audit_DF_LastUpdated.'Updated Time in UTC'
+	toColumn: LocalDateTable_d1657a04-36fd-4923-acb8-24a94c2a5cf4.Date
+
+relationship 6a11dc27-a4c4-4b6d-b0e4-1a249bdb0301
+	joinOnDateBehavior: datePartOnly
+	fromColumn: StaticStatesDFLastUpdated.'Updated Time in UTC'
+	toColumn: LocalDateTable_90a34637-d290-4e37-a297-7e074999c46f.Date
+
+relationship 26743a43-5563-4352-9931-51ae4d62a2be
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit_type.date_created
+	toColumn: LocalDateTable_c53910f7-7ff8-4bdb-a318-b06ebf3a7b0f.Date
+
+relationship a3c252e6-b7a6-4a4b-b5c5-3d5da2b00d20
+	fromColumn: audit.audit_type_id
+	toColumn: audit_type.id
+
+relationship cb1b87f1-301a-4a6d-87db-5abbf473ef9a
+	fromColumn: organization.site_id
+	toColumn: site.id
+
+relationship e240a7e7-4d1d-416b-8f59-396332a39df5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: finding.date_created
+	toColumn: LocalDateTable_e396edda-f4ee-4d89-b173-d1ddc5d42e29.Date
+
+relationship bb45afbc-b729-436a-924f-b5ad4d083b9e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit.date_created
+	toColumn: LocalDateTable_17946c29-b34a-4ba1-ae00-1b7e3498bf00.Date
+
+relationship 45a55e57-07ac-4774-bdd7-2a6682722a59
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit.date_audit_scheduled
+	toColumn: LocalDateTable_7eaa39ba-247f-4bd1-be39-9b7f3e19a8c7.Date
+
+relationship AutoDetected_71af1ec0-18ca-4595-be7d-f818ee2313f9
+	fromColumn: audit.audit_status_code
+	toColumn: Audit_States.audit_status_code
+

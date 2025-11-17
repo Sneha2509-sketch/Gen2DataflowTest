@@ -1,0 +1,61 @@
+table organization
+	lineageTag: 9d74f0ce-c4e5-48fe-960a-3669dcaaef20
+
+	column id
+		dataType: string
+		lineageTag: a508a506-2d72-4320-adf9-a7f3bd17dc3a
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_name
+		dataType: string
+		lineageTag: cc2b4e7b-6702-4fef-a039-ab8f0de33a94
+		summarizeBy: none
+		sourceColumn: organization_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column site_id
+		dataType: string
+		lineageTag: 2e3783a9-ab26-4559-8724-5ff82bf70c94
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Organization
+		dataType: string
+		lineageTag: a7be69f0-f8fe-48fc-aebe-e8d7ab0f8b44
+		summarizeBy: none
+		sourceColumn: Organization
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: int64
+		formatString: 0
+		lineageTag: 16aad262-b744-4b77-abef-d9fb8b003d1c
+		summarizeBy: sum
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition organization = m
+		mode: import
+		queryGroup: 'Main Queries'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Resource_DF")]}[Data],
+				    Organization =Dataflow {[entity="organization"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(Organization,{{"nice_name", "Organization"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

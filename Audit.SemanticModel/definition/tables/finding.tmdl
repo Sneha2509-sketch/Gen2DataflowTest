@@ -1,0 +1,127 @@
+table finding
+	lineageTag: 8e0b99a6-e1ca-43bb-92d8-b6298198eb0a
+
+	measure 'Overall Findings' = COUNTROWS(finding)
+		formatString: 0
+		lineageTag: 8ab906c1-0610-4ea6-8147-7ed944fca0f7
+
+	column id
+		dataType: string
+		lineageTag: 14eac951-303c-4b44-820f-cb56e4bde2e8
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_id
+		dataType: string
+		lineageTag: 4c4ef97a-7152-4d0c-a7df-3aac838cdab2
+		summarizeBy: none
+		sourceColumn: audit_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column finding_severity_id
+		dataType: string
+		lineageTag: c11d3463-d665-42ee-99b1-c574b3f18e3f
+		summarizeBy: none
+		sourceColumn: finding_severity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name_text
+		dataType: string
+		lineageTag: a4a7f133-81f5-4db6-991c-3628a0de17d8
+		summarizeBy: none
+		sourceColumn: name_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 521a54df-c295-4f01-a1f8-40d553f2e6f5
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dddb9d1-c9bb-4de3-9b06-2d2ea4fdda90
+		summarizeBy: sum
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_completed
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 458b1f98-f3b6-4124-8b72-a9a40b35c604
+		summarizeBy: none
+		sourceColumn: date_completed
+
+		variation Variation
+			isDefault
+			relationship: bd0241aa-8491-4790-a9d3-0014118c7302
+			defaultHierarchy: LocalDateTable_278a4abc-cac7-4d98-97df-7512900428f9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column date_canceled
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 5ae6ade7-065d-4221-a963-f389f3745364
+		summarizeBy: none
+		sourceColumn: date_canceled
+
+		variation Variation
+			isDefault
+			relationship: 9dfce316-7e4e-4c3f-a631-4d8d1454543a
+			defaultHierarchy: LocalDateTable_e12ceab8-2267-46c5-a89d-1de61518e3e6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column date_created
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 234072a5-a14c-454f-8f89-1a1f9843f7d4
+		summarizeBy: none
+		sourceColumn: date_created
+
+		variation Variation
+			isDefault
+			relationship: e240a7e7-4d1d-416b-8f59-396332a39df5
+			defaultHierarchy: LocalDateTable_e396edda-f4ee-4d89-b173-d1ddc5d42e29.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition finding = m
+		mode: import
+		queryGroup: 'Main Queries'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Audit_DF")]}[Data],
+				    Finding =Dataflow {[entity="finding"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Finding,{{"date_completed", type date}, {"date_canceled", type date}, {"date_created", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,27 @@
+table Audit_DBName
+	lineageTag: 132c8dd2-63c4-4677-826b-3d04ea4b5191
+
+	column DBName
+		dataType: string
+		lineageTag: b6e80183-95dd-4f59-8538-6b2fb9c62b46
+		summarizeBy: none
+		sourceColumn: DBName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Audit_DBName = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Audit_DF")]}[Data],
+				    Audit_DBName =Dataflow {[entity="Audit_DBName"]}[Data]
+				in
+				    Audit_DBName
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

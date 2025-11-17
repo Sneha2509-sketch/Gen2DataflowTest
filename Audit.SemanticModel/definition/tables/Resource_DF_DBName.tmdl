@@ -1,0 +1,27 @@
+table Resource_DF_DBName
+	lineageTag: c95d5369-a6c0-4b4b-b4af-a6bd6d3b8ee1
+
+	column DBName
+		dataType: string
+		lineageTag: 20a7ac45-a201-4741-8277-380864d40c69
+		summarizeBy: none
+		sourceColumn: DBName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Resource_DF_DBName = m
+		mode: import
+		queryGroup: 'Metadata Table'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Resource_DF")]}[Data],
+				    Resource_DF_DBName =Dataflow {[entity="Resource_DF_DBName"]}[Data]
+				in
+				    Resource_DF_DBName
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,69 @@
+table audit_type
+	lineageTag: 8e6b8279-213b-4f30-9bf8-a3961c48db84
+
+	column id
+		dataType: string
+		lineageTag: cb9e570f-19d8-44a9-a803-6a5bd23fc54f
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Audit type'
+		dataType: string
+		lineageTag: ea236fea-d134-45ea-b666-d4a0bd5083c0
+		summarizeBy: none
+		sourceColumn: Audit type
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: d2fcfce0-319f-4b14-9774-7b431ff8d3e0
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: int64
+		formatString: 0
+		lineageTag: 7656d91d-4682-4392-95e3-c528d5df01df
+		summarizeBy: sum
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_created
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: 31305ce8-32b9-4254-9968-e89b8a401a3b
+		summarizeBy: none
+		sourceColumn: date_created
+
+		variation Variation
+			isDefault
+			relationship: 26743a43-5563-4352-9931-51ae4d62a2be
+			defaultHierarchy: LocalDateTable_c53910f7-7ff8-4bdb-a318-b06ebf3a7b0f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition audit_type = m
+		mode: import
+		queryGroup: 'Main Queries'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Audit_DF")]}[Data],
+				    Audit_Type =Dataflow {[entity="audit_type"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(Audit_Type,{{"name_text", "Audit type"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

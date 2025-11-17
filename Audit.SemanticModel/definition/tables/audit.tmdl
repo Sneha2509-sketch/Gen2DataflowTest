@@ -1,0 +1,257 @@
+table audit
+	lineageTag: 063120fd-0c03-4721-bf38-90f02c788c5d
+
+	measure 'Total audits' = COUNTROWS(audit)
+		formatString: 0
+		lineageTag: 7134da4e-c051-4065-8ae6-243a350819b6
+
+	measure 'Upcoming audits in 30 days' =
+			
+			var duecount=COUNTROWS(
+			    FILTER(
+			        audit,audit[Days till Scheduled Audit]>0
+			    && audit[Days till Scheduled Audit]<=30
+			    )
+			    )
+			    return
+			    duecount
+		formatString: 0
+		lineageTag: 5400b2ad-0a90-4c5a-887e-19549d94298f
+
+	measure 'Upcoming audits in 60 days' =
+			
+			var duecount=COUNTROWS(
+			    FILTER(
+			        audit,audit[Days till Scheduled Audit]>30
+			    && audit[Days till Scheduled Audit]<=60
+			    )
+			    )
+			    return
+			    duecount
+		formatString: 0
+		lineageTag: 5414b335-d0d1-46d3-b340-d2b1a211acd5
+
+	measure 'Upcoming audits in 90 days' =
+			
+			var duecount=COUNTROWS(
+			    FILTER(
+			        audit,audit[Days till Scheduled Audit]>60
+			    && audit[Days till Scheduled Audit]<=90
+			    )
+			    )
+			    return
+			    duecount
+		formatString: 0
+		lineageTag: 55efeda1-7a40-4d38-8527-6d5a1239fbcb
+
+	measure 'Internal Audit' =
+			
+			COUNTAX(FILTER(audit,audit[is_internal_audit]=TRUE()),TRUE()
+			
+			)
+		formatString: 0
+		lineageTag: b1c2c62d-21e8-4270-8895-91a0c9814559
+
+	measure 'External Audit' =
+			
+			COUNTAX(FILTER(audit,audit[is_internal_audit]=FALSE()),FALSE()
+			)
+		formatString: 0
+		lineageTag: 495e38ce-4870-4eda-bc2e-e07bf0586987
+
+	column id
+		dataType: string
+		lineageTag: 50c32d33-d864-440e-bd6b-75dc20dd208e
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name_text
+		dataType: string
+		lineageTag: 173c4901-e69a-433a-bf3a-871af8df61b6
+		summarizeBy: none
+		sourceColumn: name_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: c967ff26-822c-4677-8e04-2d0c0e909108
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_type_id
+		dataType: string
+		lineageTag: 7e674a48-7664-49b8-b7c7-eab621f015e7
+		summarizeBy: none
+		sourceColumn: audit_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_internal_audit
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4d588cc0-f959-4b7b-891b-522b1915436a
+		summarizeBy: none
+		sourceColumn: is_internal_audit
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_audit_scheduled
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: d79858da-96b0-4ece-8b66-523ec585e947
+		summarizeBy: none
+		sourceColumn: date_audit_scheduled
+
+		variation Variation
+			isDefault
+			relationship: 45a55e57-07ac-4774-bdd7-2a6682722a59
+			defaultHierarchy: LocalDateTable_7eaa39ba-247f-4bd1-be39-9b7f3e19a8c7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column date_audit_completed
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 477948c6-3468-4495-b5a7-2ea342927333
+		summarizeBy: none
+		sourceColumn: date_audit_completed
+
+		variation Variation
+			isDefault
+			relationship: 6fa6e0d7-70dd-4835-9cc5-1e6b3bc7c65f
+			defaultHierarchy: LocalDateTable_fcbe2929-c1b9-4aee-a66a-37341b748d24.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column impacts_accreditiation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 01e8652e-8717-4fd7-8208-8dac605040aa
+		summarizeBy: none
+		sourceColumn: impacts_accreditiation
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_audit_canceled
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 2e23ebc8-88c2-4f6a-8c05-574c8a549c78
+		summarizeBy: none
+		sourceColumn: date_audit_canceled
+
+		variation Variation
+			isDefault
+			relationship: 6df7975f-4a49-44a7-bbbe-c61cf84e5b67
+			defaultHierarchy: LocalDateTable_72e0265a-fcbf-401e-b931-2add691d8e3d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column date_created
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 9d6e8096-65d3-42ba-a0b7-f3faf7700d50
+		summarizeBy: none
+		sourceColumn: date_created
+
+		variation Variation
+			isDefault
+			relationship: bb45afbc-b729-436a-924f-b5ad4d083b9e
+			defaultHierarchy: LocalDateTable_17946c29-b34a-4ba1-ae00-1b7e3498bf00.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column date_audit_scheduled_end
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 51ddf470-46d2-40c9-b36e-f4ffa81a1781
+		summarizeBy: none
+		sourceColumn: date_audit_scheduled_end
+
+		variation Variation
+			isDefault
+			relationship: 1371cb2e-40da-4b16-b863-6fc7dce92607
+			defaultHierarchy: LocalDateTable_8ad60946-8b5c-42d7-a435-f4f1eea949dc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Days till Scheduled Audit' =
+			
+			var due=DATEDIFF(TODAY(),audit[date_audit_scheduled],DAY)
+			return
+			if (due<=0,BLANK(),due)
+		formatString: 0
+		lineageTag: 7985ef2c-bbb9-4d9f-9173-82910d2c92be
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column auditing_company_id
+		dataType: string
+		lineageTag: 34697dce-cf2e-4545-a5a5-0ff76d57a626
+		summarizeBy: none
+		sourceColumn: auditing_company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column auditing_company_name
+		dataType: string
+		lineageTag: cdd19bf3-ecb1-4006-9cf8-97db620c4584
+		summarizeBy: none
+		sourceColumn: auditing_company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_status_code
+		dataType: string
+		lineageTag: 0a450e57-2c24-4d62-aa11-4e464a3d3649
+		summarizeBy: none
+		sourceColumn: audit_status_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition audit = m
+		mode: import
+		queryGroup: 'Main Queries'
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow =Workspace{[dataflowId=getDataflowUUID("Audit_DF")]}[Data],
+				    Audit =Dataflow {[entity="audit"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Audit,{{"date_audit_scheduled", type date}, {"date_audit_completed", type date}, {"date_audit_canceled", type date}, {"date_created", type date}, {"date_audit_scheduled_end", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

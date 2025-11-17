@@ -1,0 +1,57 @@
+expression workspace = "Trutesta QA" meta [IsParameterQuery=true, List={"Trutesta QA", "Trutesta Sandbox", "Trutesta Production", "TEAM Electrical Applications Reporting (DEV)", "TEAM Electrical Applications Reporting (STAGE)", "TEAM Electrical Applications Reporting", "Experimental", "Trutesta Devops"}, DefaultValue="Trutesta QA", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 81d1ab6c-0b92-495d-96e2-f7d24b705668
+	queryGroup: Parameters
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression environment = "SemaTree" meta [IsParameterQuery=true, List={"SemaTree", "Intertek"}, DefaultValue="SemaTree", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d0326eb8-13db-4248-8a3e-1b539b216c51
+	queryGroup: Parameters
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression getWorkspaceUUID = ```
+		() as text => 
+		let
+		    Source = Workspace_UUID,
+		    _workspace = Text.Trim(workspace),
+		    _environment = Text.Trim(environment),
+		    Filtered_Rows = Table.SelectRows(Source, each ( ([Environment]=environment) and ([Workspace] = workspace))),
+		    SingleRow = if Table.RowCount(Filtered_Rows) = 1 then Filtered_Rows else null
+		in
+		    SingleRow{0}[UUID]
+		```
+	lineageTag: 6fe5efb0-8134-4492-858a-e7587a2dccf6
+	queryGroup: Functions
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression getDataflowUUID =
+		(dataflow as text) as text =>
+		let
+		    Source = Dataflow_UUID,
+		    Filtered_Rows = Table.SelectRows(Source, each ( ([Environment] = environment) and ([Workspace] = workspace) and ([Dataflow] = dataflow))),
+		    SingleRow = if Table.RowCount(Filtered_Rows) = 1 then Filtered_Rows else null
+		in
+		    Text.From(SingleRow{0}[UUID])
+	lineageTag: 1c807de1-8da2-4ceb-bced-75f24c725ba1
+	queryGroup: Functions
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression Version = "3.1.1" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: e5b32daf-a589-4f71-93b6-c945c3f928cd
+	queryGroup: Parameters
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
