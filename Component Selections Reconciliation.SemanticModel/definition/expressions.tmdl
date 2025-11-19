@@ -28,7 +28,7 @@ expression environment = "SemaTree" meta [IsParameterQuery=true, List={"SemaTree
 
 	annotation PBI_ResultType = Text
 
-expression workspace = "Trutesta Production" meta [IsParameterQuery=true, List={"Trutesta QA", "Trutesta Sandbox", "Trutesta Production", "TEAM Electrical Applications Reporting (DEV)", "TEAM Electrical Applications Reporting (STAGE)", "TEAM Electrical Applications Reporting ", "Experimental", "Trutesta Devops"}, DefaultValue="Trutesta QA", Type="Text", IsParameterQueryRequired=true]
+expression workspace = "Trutesta QA" meta [IsParameterQuery=true, List={"Trutesta QA", "Trutesta Sandbox", "Trutesta Production", "TEAM Electrical Applications Reporting (DEV)", "TEAM Electrical Applications Reporting (STAGE)", "TEAM Electrical Applications Reporting ", "Experimental", "Trutesta Devops"}, DefaultValue="Trutesta QA", Type="Text", IsParameterQueryRequired=true]
 	lineageTag: 816cb7cb-5d02-43da-a394-0f008af7b3bb
 	queryGroup: Parameters
 
