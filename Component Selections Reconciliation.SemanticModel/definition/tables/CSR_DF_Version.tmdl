@@ -1,0 +1,26 @@
+table CSR_DF_Version
+	lineageTag: a7616c64-b83f-44a8-a3ac-b99545710f15
+
+	column 'DF Version'
+		dataType: string
+		lineageTag: 58177d40-a899-4513-987c-605c6fea2a19
+		summarizeBy: none
+		sourceColumn: DF Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CSR_DF_Version = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow = Workspace{[dataflowId=getDataflowUUID("Component Selections Reconciliation_DF")]}[Data],
+				    CSR_DF_Version = Dataflow{[entity="CSR_DF_Version"]}[Data]
+				in
+				    CSR_DF_Version
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

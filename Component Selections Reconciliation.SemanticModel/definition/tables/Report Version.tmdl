@@ -1,0 +1,25 @@
+table 'Report Version'
+	lineageTag: 1386954e-bef9-48c4-be67-1490ef9b9e8d
+
+	column Version
+		dataType: string
+		lineageTag: 7c5ee23c-dd45-4944-aea4-2041cf306b00
+		summarizeBy: none
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Report Version' = m
+		mode: import
+		source =
+				let
+				    Source = #"Version",
+				    #"Converted to Table" = #table(1, {{Source}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Version"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,27 @@
+table CSR_DF_LastUpdated
+	lineageTag: 4ee6203c-dd3f-4ab9-ae4d-095e49b5355b
+
+	column 'Updated Time in UTC'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0924f85d-42f8-4989-96af-1e9e9698ad28
+		summarizeBy: none
+		sourceColumn: Updated Time in UTC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CSR_DF_LastUpdated = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow = Workspace{[dataflowId=getDataflowUUID("Component Selections Reconciliation_DF")]}[Data],
+				    CSR_DF_LastUpdated= Dataflow{[entity="CSR_DF_LastUpdated"]}[Data]
+				in
+				    CSR_DF_LastUpdated
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

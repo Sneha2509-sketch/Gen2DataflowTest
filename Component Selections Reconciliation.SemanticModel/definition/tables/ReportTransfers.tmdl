@@ -1,0 +1,85 @@
+table ReportTransfers
+	lineageTag: fbd74a57-f43b-44b3-9a0a-99fea45915cd
+
+	measure 'Transferred Report Count' = ```
+			
+			COUNTROWS('ReportTransfers')
+			 
+			
+			```
+		formatString: 0
+		lineageTag: baa1a37a-37af-4077-80dd-036ed180af67
+
+	column Deliverable
+		dataType: string
+		lineageTag: cdfb59b8-f2d4-4cf3-82c2-0b8454d40bd6
+		summarizeBy: none
+		sourceColumn: Deliverable
+
+		annotation SummarizationSetBy = Automatic
+
+	column selection_year
+		dataType: int64
+		formatString: 0
+		lineageTag: f7c35b44-3061-4eea-b03f-bb411d6631b5
+		summarizeBy: sum
+		sourceColumn: selection_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 705176b1-b8de-45ef-8671-465a4ddede5f
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_customer_display_name
+		dataType: string
+		lineageTag: c4ea827d-3cac-4dcf-8d8c-ac7373e076b0
+		summarizeBy: none
+		sourceColumn: source_customer_display_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_customer_code
+		dataType: string
+		lineageTag: 0ce7091a-a783-4a03-bf9b-708ae28dd64c
+		summarizeBy: none
+		sourceColumn: source_customer_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination_customer_display_name
+		dataType: string
+		lineageTag: 2ca70abd-5c46-4701-bf98-7fc994709b01
+		summarizeBy: none
+		sourceColumn: destination_customer_display_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination_customer_code
+		dataType: string
+		lineageTag: 7766face-c36e-4f5a-9ff5-20f33e7efa1f
+		summarizeBy: none
+		sourceColumn: destination_customer_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ReportTransfers = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow = Workspace{[dataflowId=getDataflowUUID("Component Selections Reconciliation_DF")]}[Data],
+				    ReportTransfers= Dataflow{[entity="ReportTransfers"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(ReportTransfers,{{"name_text2", "Region"}, {"name_text", "Deliverable"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

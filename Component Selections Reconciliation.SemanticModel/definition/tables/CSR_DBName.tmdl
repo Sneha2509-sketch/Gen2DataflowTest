@@ -1,0 +1,26 @@
+table CSR_DBName
+	lineageTag: 5665ded6-2c5e-45ba-8874-ce0e396f6190
+
+	column DBName
+		dataType: string
+		lineageTag: 94ee9612-2c54-4c70-b265-4cbf225b5da1
+		summarizeBy: none
+		sourceColumn: DBName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CSR_DBName = m
+		mode: import
+		source =
+				let
+				   Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow = Workspace{[dataflowId=getDataflowUUID("Component Selections Reconciliation_DF")]}[Data],
+				    CSR_DBName = Dataflow{[entity="CSR_DBName"]}[Data]
+				in
+				    CSR_DBName
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

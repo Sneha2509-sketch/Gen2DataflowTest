@@ -1,0 +1,74 @@
+expression ToLocal =
+		(theDate as datetimezone) =>
+		let
+		    newDate = DateTimeZone.SwitchZone(theDate, 4),
+		    returnDate = DateTimeZone.RemoveZone(newDate)
+		in
+		    returnDate as datetime
+	lineageTag: 6d505ca5-40a8-4cd1-9c1c-a96e97096ea6
+	queryGroup: Functions
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression Version = "1.0.0" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 84d39334-7516-4f99-b13e-69c37fd56d27
+	queryGroup: Parameters
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression environment = "SemaTree" meta [IsParameterQuery=true, List={"SemaTree", "Intertek"}, DefaultValue="SemaTree", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 65310d9c-c794-44bd-84fe-95005d48e63f
+	queryGroup: Parameters
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression workspace = "Trutesta Production" meta [IsParameterQuery=true, List={"Trutesta QA", "Trutesta Sandbox", "Trutesta Production", "TEAM Electrical Applications Reporting (DEV)", "TEAM Electrical Applications Reporting (STAGE)", "TEAM Electrical Applications Reporting ", "Experimental", "Trutesta Devops"}, DefaultValue="Trutesta QA", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 816cb7cb-5d02-43da-a394-0f008af7b3bb
+	queryGroup: Parameters
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression getWorkspaceUUID = ```
+		() as text => 
+		let
+		    Source = Workspace_UUID,
+		    _workspace = Text.Trim(workspace),
+		    _environment = Text.Trim(environment),
+		    Filtered_Rows = Table.SelectRows(Source, each ( ([Environment]=environment) and ([Workspace] = workspace))),
+		    SingleRow = if Table.RowCount(Filtered_Rows) = 1 then Filtered_Rows else null
+		in
+		    SingleRow{0}[UUID]
+		```
+	lineageTag: 9056693d-cb80-4f83-bbf8-770dd7333ff4
+	queryGroup: Functions
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression getDataflowUUID =
+		(dataflow as text) as text =>
+		let
+		    Source = Dataflow_UUID,
+		    _workspace = Text.Trim(workspace),
+		    _environment = Text.Trim(environment),
+		    _dataflow=Text.Trim(dataflow),
+		    Filtered_Rows = Table.SelectRows(Source, each ( ([Environment] = environment) and ([Workspace] = workspace) and ([Dataflow] = dataflow))),
+		    SingleRow = if Table.RowCount(Filtered_Rows) = 1 then Filtered_Rows else null
+		in
+		    Text.From(SingleRow{0}[UUID])
+	lineageTag: 139a637a-52a5-481e-beb5-333f06295f0c
+	queryGroup: Functions
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

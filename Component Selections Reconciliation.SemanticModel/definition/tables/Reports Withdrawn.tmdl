@@ -1,0 +1,57 @@
+table 'Reports Withdrawn'
+	lineageTag: a68eb41d-ac6a-4803-9647-0b7e52de5c9e
+
+	measure 'Withdrawn Reports' = COUNTROWS('Reports Withdrawn')
+		formatString: 0
+		lineageTag: a8f84443-dbce-4886-a3e6-342ae48e5c8e
+
+	column deliverable
+		dataType: string
+		lineageTag: a7bd936d-b53d-487f-b2ee-98bbe0b4edd5
+		summarizeBy: none
+		sourceColumn: deliverable
+
+		annotation SummarizationSetBy = Automatic
+
+	column receive_customer_display_name
+		dataType: string
+		lineageTag: 9e304544-b868-4312-a57d-d68d4c7662cc
+		summarizeBy: none
+		sourceColumn: receive_customer_display_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column selection_year
+		dataType: int64
+		formatString: 0
+		lineageTag: cb1d37f8-3e2f-40bd-be4d-873869c76edd
+		summarizeBy: sum
+		sourceColumn: selection_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 62b542b5-3aee-4e7e-9252-f343dacdc83f
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Reports Withdrawn' = m
+		mode: import
+		source =
+				let
+				    Source = PowerBI.Dataflows(null),
+				    Workspace = Source{[workspaceId=getWorkspaceUUID()]}[Data],
+				    Dataflow = Workspace{[dataflowId=getDataflowUUID("Component Selections Reconciliation_DF")]}[Data],
+				    #"Reports Withdrawn" = Dataflow{[entity="Reports Withdrawn"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(#"Reports Withdrawn",{{"name_text", "deliverable"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"receive_customer_display_name2"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

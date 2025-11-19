@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Component Selections Reconciliation"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d8654cd5-8c38-4697-8882-008df843f0a1"
+  }
+}
